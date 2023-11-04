@@ -4,6 +4,7 @@ AC_PREREQ(2.64)
 AC_INIT([snzip], [1.0.5])
 
 AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([subdir-objects])
 
 AC_ARG_WITH([default-format],
     [AS_HELP_STRING([--with-default-format=snzip|framing|framing2],
@@ -93,8 +94,8 @@ AC_ARG_WITH([snappy],
     [AS_HELP_STRING([--with-snappy=prefix],
         [try this for a non-standard install prefix of the snappy library])],
     [
-        CFLAGS="$CFLAGS -I$with_snappy/include"
-        CXXFLAGS="$CXXFLAGS -I$with_snappy/include"
+        CFLAGS="$CFLAGS -I$with_snappy/include -I. -Isrc"
+        CXXFLAGS="$CXXFLAGS -I$with_snappy/include -I. -Isrc"
         AS_CASE(["$host_os"],
             [linux*],   [LDFLAGS="$LDFLAGS -L$with_snappy/lib -Wl,-rpath,$with_snappy/lib"],
             [solaris*], [LDFLAGS="$LDFLAGS -L$with_snappy/lib -R$with_snappy/lib"],

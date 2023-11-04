@@ -57,22 +57,22 @@ endif()
 configure_file(cmake_config.h.in config.h)
 
 set(SNZIP_SOURCES
-  comment-43-format.c
-  crc32.c
-  crc32.h
-  framing-format.c
-  framing2-format.c
-  hadoop-snappy-format.c
-  iwa-format.c
-  raw_format.cpp
-  snappy-in-java-format.c
-  snappy-java-format.c
-  snzip-format.c
-  snzip.c
-  snzip.h
+  src/comment-43-format.c
+  src/crc32.c
+  src/crc32.h
+  src/framing-format.c
+  src/framing2-format.c
+  src/hadoop-snappy-format.c
+  src/iwa-format.c
+  src/raw_format.cpp
+  src/snappy-in-java-format.c
+  src/snappy-java-format.c
+  src/snzip-format.c
+  src/snzip.c
+  src/snzip.h
 )
 if(HAVE_SSE4_2)
-  list(APPEND SNZIP_SOURCES crc32_sse4_2.c)
+  list(APPEND SNZIP_SOURCES src/crc32_sse4_2.c)
 endif()
 
 if(NOT HAVE_GETOPT)

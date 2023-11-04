@@ -1,21 +1,21 @@
 # Command line tool.
-snzip_SOURCES = snzip.c \
-	snzip.h \
-	snzip-format.c \
-	framing-format.c \
-	framing2-format.c \
-	hadoop-snappy-format.c \
-	iwa-format.c \
-	snappy-java-format.c \
-	snappy-in-java-format.c \
-	comment-43-format.c \
-	crc32.c \
-	crc32.h
+snzip_SOURCES = src/snzip.c \
+	src/snzip.h \
+	src/snzip-format.c \
+	src/framing-format.c \
+	src/framing2-format.c \
+	src/hadoop-snappy-format.c \
+	src/iwa-format.c \
+	src/snappy-java-format.c \
+	src/snappy-in-java-format.c \
+	src/comment-43-format.c \
+	src/crc32.c \
+	src/crc32.h
 if SUPPORT_RAW_FORMAT
-snzip_SOURCES += raw_format.cpp
+snzip_SOURCES += src/raw_format.cpp
 endif
 if HAVE_SSE4_2
-snzip_SOURCES += crc32_sse4_2.c
+snzip_SOURCES += src/crc32_sse4_2.c
 endif
 snzip_LDFLAGS = @LDFLAGS_SSE4_2@
 CFLAGS_SSE4_2 = @CFLAGS_SSE4_2@
@@ -38,5 +38,5 @@ uninstall-hook:
 
 # Use CFLAGS_SSE4_2 only for crc32_sse4_2.c.
 # Otherwise, SSE4.2 instructions may be used elsewhere.
-crc32_sse4_2.o: crc32_sse4_2.c crc32.h
-	$(COMPILE) $(CFLAGS_SSE4_2) -c $<
+src/crc32_sse4_2.o: src/crc32_sse4_2.c src/crc32.h
+	$(COMPILE) $(CFLAGS_SSE4_2) -c $< -o $@
